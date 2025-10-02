@@ -40,7 +40,7 @@ class Offline_RAG:
     def get_chain(self, top_k: int = 5, weights : list = [0.8, 0.2]):
         rag_chain = (
             {
-                "context": lambda query: self.vector_db.hybrid_search(query, top_k=top_k, weights = weights ) | self.format_docs,
+                "context": lambda query: self.format_docs(self.vector_db.hybrid_search(query, top_k=top_k, weights=weights)),
                 "question" : RunnablePassthrough()
             }
             | self.prompt

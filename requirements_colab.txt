@@ -1,0 +1,22 @@
+torch --index-url https://download.pytorch.org/whl/cu118
+torchvision --index-url https://download.pytorch.org/whl/cu118
+torchaudio --index-url https://download.pytorch.org/whl/cu118
+transformers --prefer-binary --extra-index-url=https://download.pytorch.org/whl/cu118
+numpy==1.26.4
+accelerate --prefer-binary --extra-index-url=https://download.pytorch.org/whl/cu118
+bitsandbytes --prefer-binary --extra-index-url=https://download.pytorch.org/whl/cu118
+triton --prefer-binary --extra-index-url=https://download.pytorch.org/whl/cu118
+huggingface-hub==0.34.0
+langchain==0.1.14
+langchain-core==0.1.43
+langchain-community==0.0.31
+pypdf==4.2.0
+sentence-transformers==5.1.0
+beautifulsoup4==4.12.3
+langserve[all]
+faiss-cpu
+rapidocr-onnxruntime==1.4.1
+unstructured==0.18.5
+wget
+rank_bm25
+langchainhub
