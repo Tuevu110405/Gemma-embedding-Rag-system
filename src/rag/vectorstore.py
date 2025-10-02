@@ -23,8 +23,9 @@ class VectorDB:
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.embedding_model = SentenceTransformer("google/embeddinggemma-300M").to(device=self.device)
         self.documents = documents
-        self.semantic_index = self._build_db(self.documents)
-        self.bm25, self.bm25_id = self._build_rv(self.documents)
+        self.raw.documets = [doc.page_content for doc in documents] if documents else []
+        self.semantic_index = self._build_db(self.raw_documents)
+        self.bm25, self.bm25_id = self._build_rv(self.raw_documents)
         
     def _build_db(self, documents):
         # create embeddings gamma from documents 
@@ -105,8 +106,9 @@ class VectorDB:
         final_docs = []
         for idx, score in sorted_results:
             # Create a Document object for each result
+
             doc = Document(
-                page_content=self.documents[idx], 
+                page_content=self.documents[idx].page_content, 
                 metadata={"id": idx, "score": score}
             )
             final_docs.append(doc)
